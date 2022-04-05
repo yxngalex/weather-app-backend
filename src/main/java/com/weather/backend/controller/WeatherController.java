@@ -1,11 +1,16 @@
 package com.weather.backend.controller;
 
+import com.weather.backend.model.FormCity;
+import com.weather.backend.model.Weather;
 import com.weather.backend.services.WeatherService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/weather")
@@ -13,9 +18,16 @@ import org.springframework.web.client.RestTemplate;
 public class WeatherController {
     private final WeatherService weatherService;
 
-    @GetMapping(value = "/forecast-average")
-    public ResponseEntity<?> forecastAverage(@RequestParam String lat, @RequestParam String lon) {
-       return weatherService.forecastAverage(lat, lon);
+    @GetMapping(value = "/cities")
+    @ApiOperation(value = "", nickname = "getCities")
+    public ResponseEntity<List<FormCity>> getCities() {
+//        return ResponseEntity.ok(cityService.getAll());
+        return null;
+    }
+
+    @GetMapping(value = "/forecast")
+    public ResponseEntity<List<Weather>> forecast(@RequestBody FormCity city) {
+        return ResponseEntity.ok(weatherService.forecast(city));
     }
 
 }
