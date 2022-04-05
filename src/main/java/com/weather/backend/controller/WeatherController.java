@@ -5,10 +5,8 @@ import com.weather.backend.model.Weather;
 import com.weather.backend.services.WeatherService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class WeatherController {
     }
 
     @GetMapping(value = "/forecast")
-    public ResponseEntity<List<Weather>> forecast(@RequestBody FormCity city) {
+    public ResponseEntity<Weather> forecast(@RequestBody FormCity city) {
         return ResponseEntity.ok(weatherService.forecast(city));
     }
 

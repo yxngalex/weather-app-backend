@@ -35,8 +35,7 @@ public class WeatherServiceImpl implements WeatherService {
     RestTemplate restTemplate;
 
     @Override
-    public List<Weather> forecast(FormCity city) {
-        List<Weather> weathers = new ArrayList<>();
+    public Weather forecast(FormCity city) {
         try {
             UriComponents uriComponents = UriComponentsBuilder
                     .newInstance()
@@ -51,14 +50,16 @@ public class WeatherServiceImpl implements WeatherService {
             ResponseEntity<String> resp = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
 
             ObjectMapper mapper = new ObjectMapper();
-            weathers.add( mapper.readValue(resp.getBody(), Weather.class));
+            new Weather();
+            Weather weather;
+            weather = mapper.readValue(resp.getBody(), Weather.class);
 
-            return weathers;
+            return weather;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
 
-        return weathers;
+        return null;
     }
 }
