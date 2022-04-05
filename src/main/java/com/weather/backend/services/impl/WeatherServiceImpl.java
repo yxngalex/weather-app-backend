@@ -43,7 +43,7 @@ public class WeatherServiceImpl implements WeatherService {
                     .scheme("http")
                     .host(weatherData.getUrl())
                     .path("")
-                    .query("q={keyword}&appid={appid}")
+                    .query("q={keyword}&appid={appid}&units=metric")
                     .buildAndExpand(city.getCity(), weatherData.getApiKey());
 
             String uri = uriComponents.toUriString();
@@ -51,10 +51,7 @@ public class WeatherServiceImpl implements WeatherService {
             ResponseEntity<String> resp = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
 
             ObjectMapper mapper = new ObjectMapper();
-            Weather weather = null;
-            weather = mapper.readValue(resp.getBody(), Weather.class);
-
-            weathers.add(weather);
+            weathers.add( mapper.readValue(resp.getBody(), Weather.class));
 
             return weathers;
         } catch (JsonProcessingException e) {

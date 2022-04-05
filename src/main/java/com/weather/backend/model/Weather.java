@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -18,20 +19,10 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather implements Serializable {
     private static final long serialVersionUID = 7406210628182440902L;
-    private String weatherDescription;
-    private double lon;
-    private String name;
-    private double lat;
+    private List<Map<String, Object>> weatherList;
 
-    @JsonProperty("weather")
-    public void setWeather(List<Map<String, Object>> weatherEntries) {
-        Map<String, Object> weather = weatherEntries.get(0);
-        setWeatherDescription((String) weather.get("description"));
-    }
-
-    @JsonProperty("coord")
-    public void setCoord(Map<String, Object> coord) {
-        setLon((double) coord.get("lon"));
-        setLat((double) coord.get("lat"));
+    @JsonProperty("list")
+    public void setList(List<Map<String, Object>> weatherEntries) {
+        setWeatherList(weatherEntries.stream().limit(6).collect(Collectors.toList()));
     }
 }
