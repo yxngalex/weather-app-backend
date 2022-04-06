@@ -14,14 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Data
@@ -30,7 +25,6 @@ import java.util.List;
 public class WeatherServiceImpl implements WeatherService {
     @Autowired
     private WeatherUrl weatherData;
-
     @Autowired
     RestTemplate restTemplate;
 
@@ -50,14 +44,11 @@ public class WeatherServiceImpl implements WeatherService {
             ResponseEntity<String> resp = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
 
             ObjectMapper mapper = new ObjectMapper();
-            Weather weather;
-            weather = mapper.readValue(resp.getBody(), Weather.class);
 
-            return weather;
+            return mapper.readValue(resp.getBody(), Weather.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
 
         return null;
     }
