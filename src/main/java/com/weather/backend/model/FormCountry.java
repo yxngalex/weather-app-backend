@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FormCity {
-    private String city;
+public class FormCountry {
+    private String code;
 }
