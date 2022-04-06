@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/weather")
@@ -16,14 +15,8 @@ import java.util.List;
 public class WeatherController {
     private final WeatherService weatherService;
 
-    @GetMapping(value = "/cities")
-    @ApiOperation(value = "", nickname = "getCities")
-    public ResponseEntity<List<FormCity>> getCities() {
-//        return ResponseEntity.ok(cityService.getAll());
-        return null;
-    }
-
     @GetMapping(value = "/forecast")
+    @ApiOperation(value = "", nickname = "forecast")
     public ResponseEntity<Weather> forecast(@RequestBody FormCity city) {
         return ResponseEntity.ok(weatherService.forecast(city));
     }

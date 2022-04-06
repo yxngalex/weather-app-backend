@@ -50,7 +50,6 @@ public class WeatherServiceImpl implements WeatherService {
             ResponseEntity<String> resp = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
 
             ObjectMapper mapper = new ObjectMapper();
-            new Weather();
             Weather weather;
             weather = mapper.readValue(resp.getBody(), Weather.class);
 

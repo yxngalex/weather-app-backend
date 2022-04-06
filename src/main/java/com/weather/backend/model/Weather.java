@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonView
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather implements Serializable {
     private static final long serialVersionUID = 7406210628182440902L;
