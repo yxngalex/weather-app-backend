@@ -1,11 +1,13 @@
 package com.weather.backend.services.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weather.backend.controller.CityController;
 import com.weather.backend.model.FormCity;
+import com.weather.backend.model.FormCountry;
 import com.weather.backend.model.Weather;
 import com.weather.backend.model.WeatherUrl;
+import com.weather.backend.model.domain.CityType;
 import com.weather.backend.services.WeatherService;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +20,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @Service
 @Data
 @RequiredArgsConstructor
@@ -27,6 +31,7 @@ public class WeatherServiceImpl implements WeatherService {
     private WeatherUrl weatherData;
     @Autowired
     RestTemplate restTemplate;
+    private final CityController cityController;
 
     @Override
     public Weather forecast(FormCity city) {
@@ -50,6 +55,24 @@ public class WeatherServiceImpl implements WeatherService {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    @Override
+    public List<CityType> sortCities(FormCountry country) {
+//        List<CityType> cities = cityController.getAvailableCitiesByCountry(country.getCode()).getBody();
+//        FormCity c = new FormCity();
+//        List<Weather> weatherList = new ArrayList<>();
+//
+//        for (CityType city : cities) {
+//            c.setCity(city.getValue());
+//
+//            weatherList.add(forecast(c));
+//        }
+//
+//        System.out.println(weatherList);
+//
+//        return weatherList;
         return null;
     }
 }

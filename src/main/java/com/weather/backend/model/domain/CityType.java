@@ -2,10 +2,8 @@ package com.weather.backend.model.domain;
 
 import com.weather.backend.util.Displayable;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public enum CityType implements Displayable {
     BEOGRAD("Beograd"),

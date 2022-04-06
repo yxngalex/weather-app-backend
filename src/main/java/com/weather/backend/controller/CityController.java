@@ -1,7 +1,6 @@
 package com.weather.backend.controller;
 
 import com.weather.backend.model.domain.CityType;
-import com.weather.backend.model.domain.CountryType;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,7 @@ public class CityController {
 
     @GetMapping("/{countryType}")
     @ApiOperation(value = "", nickname = "getAvailableCitiesByCountry")
-    public ResponseEntity<List<List<CityType>>> getAvailableCitiesByCountry(@PathVariable String countryType) {
-        return ResponseEntity.ok(Arrays.asList(CityType.getValueByCountry(countryType)));
+    public ResponseEntity<List<CityType>> getAvailableCitiesByCountry(@PathVariable String countryType) {
+                return ResponseEntity.ok(CityType.getValueByCountry(countryType));
     }
 }
