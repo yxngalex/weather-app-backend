@@ -34,15 +34,15 @@ public class WeatherServiceImpl implements WeatherService {
     private final CityController cityController;
 
     @Override
-    public Weather forecast(FormCity city) {
+    public Weather forecast(FormCity city, String country) {
         try {
             UriComponents uriComponents = UriComponentsBuilder
                     .newInstance()
                     .scheme("http")
                     .host(weatherData.getUrl())
                     .path("")
-                    .query("q={keyword}&appid={appid}&units=metric")
-                    .buildAndExpand(city.getCity(), weatherData.getApiKey());
+                    .query("q={keyword},{keyword}&appid={appid}&units=metric")
+                    .buildAndExpand(city.getCity(), country, weatherData.getApiKey());
 
             String uri = uriComponents.toUriString();
 

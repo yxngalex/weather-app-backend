@@ -34,7 +34,7 @@ public enum CityType implements Displayable {
                 return Arrays.asList(BEOGRAD, NIS, NOVISAD);
             case US:
                 return Arrays.asList(WASHINGTON, NEWYORK, LOSANGELES);
-            case UK:
+            case GB:
                 return Arrays.asList(LONDON, MANCHESTER, BIRMINGHAM);
         }
 

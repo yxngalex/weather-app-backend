@@ -17,13 +17,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/weather")
 @RequiredArgsConstructor
+@CrossOrigin
 public class WeatherController {
     private final WeatherService weatherService;
 
-    @GetMapping("/forecast")
+    @PostMapping("/forecast/{country}")
     @ApiOperation(value = "", nickname = "forecast")
-    public ResponseEntity<Weather> forecast(@RequestBody FormCity city) {
-        return ResponseEntity.ok(weatherService.forecast(city));
+    public ResponseEntity<Weather> forecast(@RequestBody FormCity city, @PathVariable String country) {
+        return ResponseEntity.ok(weatherService.forecast(city, country));
     }
 
     @GetMapping("/average")

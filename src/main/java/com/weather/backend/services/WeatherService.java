@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface WeatherService {
-    Weather forecast(FormCity city);
+    Weather forecast(FormCity city, String country);
 
     List<CityType> sortCities(FormCountry country);
 }
