@@ -1,4 +1,4 @@
-package com.weather.backend.model;
+package com.weather.backend.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

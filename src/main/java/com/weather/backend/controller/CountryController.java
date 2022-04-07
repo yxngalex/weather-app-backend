@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/country")
 @RequiredArgsConstructor
-@CrossOrigin
 public class CountryController {
 
     @GetMapping()
