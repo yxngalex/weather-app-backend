@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -21,6 +20,6 @@ public class Weather implements Serializable {
 
     @JsonProperty("list")
     public void setList(List<Map<String, Object>> weatherEntries) {
-        setWeatherList(weatherEntries.stream().limit(6).collect(Collectors.toList()));
+        setWeatherList(weatherEntries);
     }
 }

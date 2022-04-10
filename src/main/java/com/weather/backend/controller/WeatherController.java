@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class WeatherController {
     private final WeatherService weatherService;
 
-    @GetMapping("/country/{country}/city/{city}")
+    @GetMapping("/lat/{lat}/lon/{lon}")
     @ApiOperation(value = "", nickname = "forecast")
-    public ResponseEntity<Weather> forecast(@PathVariable String country, @PathVariable String city) {
-        return ResponseEntity.ok(weatherService.forecast(city, country));
+    public ResponseEntity<Weather> forecast(@PathVariable String lat, @PathVariable String lon) {
+        return ResponseEntity.ok(weatherService.forecast(lat, lon));
     }
 
 }

@@ -38,15 +38,15 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public Weather forecast(String city, String country) {
+    public Weather forecast(String lat, String lon) {
         try {
             UriComponents uriComponents = UriComponentsBuilder
                     .newInstance()
                     .scheme("http")
                     .host(weatherData.getUrl())
                     .path("")
-                    .query("q={keyword},{keyword}&appid={appid}&units=metric")
-                    .buildAndExpand(city, country, weatherData.getApiKey());
+                    .query("q={keyword},{keyword}&appid={appid}&units=metric&cnt=7")
+                    .buildAndExpand(Double.parseDouble(lat), Double.parseDouble(lon), weatherData.getApiKey());
 
             String uri = uriComponents.toUriString();
 
