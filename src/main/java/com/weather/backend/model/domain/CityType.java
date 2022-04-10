@@ -1,5 +1,6 @@
 package com.weather.backend.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.weather.backend.util.Displayable;
 
 import java.util.Arrays;
@@ -16,15 +17,16 @@ public enum CityType implements Displayable {
     MANCHESTER("Manchester"),
     BIRMINGHAM("Birmingham");
 
-    private final String value;
+    private final String displayName;
 
     CityType(String value) {
-        this.value = value;
+        this.displayName = value;
     }
 
+    @JsonValue
     @Override
-    public String getValue() {
-        return value;
+    public String getDisplayName() {
+        return displayName;
     }
 
     public static List<CityType> getValueByCountry(String countryType) {

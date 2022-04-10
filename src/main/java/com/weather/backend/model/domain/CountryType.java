@@ -14,7 +14,7 @@ public enum CountryType implements Displayable {
     }
 
     @Override
-    public String getValue() {
+    public String getDisplayName() {
         return value;
     }
 }
