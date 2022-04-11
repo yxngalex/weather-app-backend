@@ -22,4 +22,10 @@ public class WeatherController {
         return ResponseEntity.ok(weatherService.forecast(lat, lon));
     }
 
+    @GetMapping("/country/{country}/city/{city}")
+    @ApiOperation(value = "", nickname = "getWeather")
+    public ResponseEntity<Weather> getWeather(@PathVariable String country, @PathVariable String city) {
+        return ResponseEntity.ok(weatherService.weather(city, country));
+    }
+
 }
