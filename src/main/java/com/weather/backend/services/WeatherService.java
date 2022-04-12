@@ -1,15 +1,11 @@
 package com.weather.backend.services;
 
-import com.weather.backend.model.FormCity;
-import com.weather.backend.model.FormCountry;
-import com.weather.backend.model.Weather;
-import com.weather.backend.model.domain.CityType;
-
-import java.util.List;
+import com.weather.backend.model.dto.OneCall;
+import com.weather.backend.model.dto.Weather;
 
 
 public interface WeatherService {
-    Weather forecast(FormCity city);
+    OneCall forecast(String lat, String lon);
 
-    List<CityType> sortCities(FormCountry country);
+    Weather weather(String city, String country);
 }

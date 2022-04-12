@@ -1,78 +1,41 @@
 package com.weather.backend.services.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weather.backend.controller.CityController;
-import com.weather.backend.model.FormCity;
-import com.weather.backend.model.FormCountry;
-import com.weather.backend.model.Weather;
-import com.weather.backend.model.WeatherUrl;
-import com.weather.backend.model.domain.CityType;
+import com.weather.backend.model.dto.OneCall;
+import com.weather.backend.model.dto.Weather;
 import com.weather.backend.services.WeatherService;
+import com.weather.backend.util.WeatherUriFacade;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @Service
 @Data
 @RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 public class WeatherServiceImpl implements WeatherService {
-    @Autowired
-    private WeatherUrl weatherData;
-    @Autowired
-    RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+    private final WeatherUriFacade weatherUriFacade;
     private final CityController cityController;
 
+
     @Override
-    public Weather forecast(FormCity city) {
-        try {
-            UriComponents uriComponents = UriComponentsBuilder
-                    .newInstance()
-                    .scheme("http")
-                    .host(weatherData.getUrl())
-                    .path("")
-                    .query("q={keyword}&appid={appid}&units=metric")
-                    .buildAndExpand(city.getCity(), weatherData.getApiKey());
-
-            String uri = uriComponents.toUriString();
-
-            ResponseEntity<String> resp = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
-
-            ObjectMapper mapper = new ObjectMapper();
-
-            return mapper.readValue(resp.getBody(), Weather.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public OneCall forecast(String lat, String lon) {
+        return restTemplate.exchange(weatherUriFacade.forOneCall(lat, lon),
+                HttpMethod.POST, getHttpEntity(OneCall.class), OneCall.class).getBody();
     }
 
     @Override
-    public List<CityType> sortCities(FormCountry country) {
-//        List<CityType> cities = cityController.getAvailableCitiesByCountry(country.getCode()).getBody();
-//        FormCity c = new FormCity();
-//        List<Weather> weatherList = new ArrayList<>();
-//
-//        for (CityType city : cities) {
-//            c.setCity(city.getValue());
-//
-//            weatherList.add(forecast(c));
-//        }
-//
-//        System.out.println(weatherList);
-//
-//        return weatherList;
-        return null;
+    public Weather weather(String city, String country) {
+        return restTemplate.exchange(weatherUriFacade.forWeather(city, country),
+                HttpMethod.POST, getHttpEntity(Weather.class), Weather.class).getBody();
+    }
+
+    private <T> HttpEntity<T> getHttpEntity(T object) {
+        return new HttpEntity<>(object);
     }
 }

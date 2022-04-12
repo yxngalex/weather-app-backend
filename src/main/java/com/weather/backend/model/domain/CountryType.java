@@ -4,7 +4,7 @@ import com.weather.backend.util.Displayable;
 
 public enum CountryType implements Displayable {
     RS("RS"),
-    UK("UK"),
+    GB("GB"),
     US("US");
 
     private final String value;
@@ -14,7 +14,7 @@ public enum CountryType implements Displayable {
     }
 
     @Override
-    public String getValue() {
+    public String getDisplayName() {
         return value;
     }
 }
