@@ -20,6 +20,8 @@ public class WeatherUriFacade {
                 .queryParam("lat", lat)
                 .queryParam("lon", lon)
                 .queryParam("appid", weatherProperty.getProperty("weather.apikey"))
+                .queryParam("units", "metric")
+                .queryParam("cnt", 7)
                 .build()
                 .encode()
                 .toUri();
