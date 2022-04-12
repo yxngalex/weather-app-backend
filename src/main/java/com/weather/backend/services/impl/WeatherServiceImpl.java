@@ -1,6 +1,7 @@
 package com.weather.backend.services.impl;
 
 import com.weather.backend.controller.CityController;
+import com.weather.backend.model.dto.OneCall;
 import com.weather.backend.model.dto.Weather;
 import com.weather.backend.services.WeatherService;
 import com.weather.backend.util.WeatherUriFacade;
@@ -23,9 +24,9 @@ public class WeatherServiceImpl implements WeatherService {
 
 
     @Override
-    public Weather forecast(String lat, String lon) {
+    public OneCall forecast(String lat, String lon) {
         return restTemplate.exchange(weatherUriFacade.forOneCall(lat, lon),
-                HttpMethod.POST, getHttpEntity(Weather.class), Weather.class).getBody();
+                HttpMethod.POST, getHttpEntity(OneCall.class), OneCall.class).getBody();
     }
 
     @Override

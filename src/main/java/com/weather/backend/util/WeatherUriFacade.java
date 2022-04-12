@@ -16,7 +16,7 @@ public class WeatherUriFacade {
 
     private URI getUriFor(String lat, String lon) {
         return WeatherUriBuilder.instance(weatherProperty)
-                .propertyPath(weatherProperty.getProperty("weather.url"))
+                .path(weatherProperty.getProperty("weather.url"))
                 .queryParam("lat", lat)
                 .queryParam("lon", lon)
                 .queryParam("appid", weatherProperty.getProperty("weather.apikey"))

@@ -1,5 +1,6 @@
 package com.weather.backend.controller;
 
+import com.weather.backend.model.dto.OneCall;
 import com.weather.backend.model.dto.Weather;
 import com.weather.backend.model.dto.WeatherDTO;
 import com.weather.backend.services.WeatherService;
@@ -18,7 +19,7 @@ public class WeatherController {
 
     @GetMapping("/lat/{lat}/lon/{lon}")
     @ApiOperation(value = "", nickname = "forecast")
-    public ResponseEntity<Weather> forecast(@PathVariable String lat, @PathVariable String lon) {
+    public ResponseEntity<OneCall> forecast(@PathVariable String lat, @PathVariable String lon) {
         return ResponseEntity.ok(weatherService.forecast(lat, lon));
     }
 
