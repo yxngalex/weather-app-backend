@@ -8,7 +8,6 @@ Returns a JSON to the [front](https://github.com/yxngalex/weather-app-react), an
 
 ## Installation
 
-Assuming linux platform
 
 ```bash
 git clone git@github.com:yxngalex/weather-app-backend.git
