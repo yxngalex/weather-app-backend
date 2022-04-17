@@ -4,7 +4,7 @@
 
 > Weather App Backend that communicates with [OpenWeatherMap](https://openweathermap.org/api).
 
-Returns a JSON to the [front](https://github.com/yxngalex/weather-app-react), and writes utilizes functionality such as
+Returns a JSON to the [front](https://github.com/yxngalex/weather-app-react), and utilizes functionality such as
 Autocomplete.
 
 ## Installation
